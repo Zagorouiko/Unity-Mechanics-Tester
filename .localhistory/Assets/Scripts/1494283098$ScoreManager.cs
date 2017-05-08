@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
-    private static int _score;
+    private static int Score;
     public TextMesh ScoreText;
 	// Use this for initialization
 	void Start ()
 	{
-	    _score = 0;
+	    Score = 0;
 	}
 	
 	void Update () {
@@ -18,7 +17,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore()
     {
-        _score++;
-        ScoreText.text = "Score:  " + _score;
+        Score++;
+        ScoreText.text = "Score:  " + Score;
     }
 }

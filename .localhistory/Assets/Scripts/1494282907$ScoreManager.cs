@@ -1,24 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
-    private static int _score;
-    public TextMesh ScoreText;
+    private static int Score;
+    public GUIText ScoreUI;
 	// Use this for initialization
 	void Start ()
 	{
-	    _score = 0;
+	    Score = 0;
 	}
 	
+	// Update is called once per frame
 	void Update () {
-    }
+		
+	}
 
     public void AddScore()
     {
-        _score++;
-        ScoreText.text = "Score:  " + _score;
+        Score++;
+        ScoreUI.text("Score:  " + Score);
     }
 }

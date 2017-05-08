@@ -33,7 +33,7 @@ namespace Assets.Scripts
         {
             if (enemyCurrentHealth <= 0)
             {
-                GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>().AddScore();
+                //GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>().AddScore();
                 Destroy(gameObject);
             }
         }

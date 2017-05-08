@@ -16,7 +16,11 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            Death();
+
+            if (enemyCurrentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void HurtEnemy(int damageToGive)
@@ -27,15 +31,6 @@ namespace Assets.Scripts
         public void SetMaxHealth()
         {
             enemyCurrentHealth = enemyMaxHealth;
-        }
-
-        public void Death()
-        {
-            if (enemyCurrentHealth <= 0)
-            {
-                GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>().AddScore();
-                Destroy(gameObject);
-            }
         }
     }
 }
