@@ -16,11 +16,9 @@ namespace Assets.Scripts
         private LineRenderer laserLine;
         private float nextFire;
 
-        public int damageToGive;
-
         // Use this for initialization
         void Start () {
-            laserLine = GetComponent<LineRenderer>();           
+            laserLine = GetComponent<LineRenderer>();
         }
 	
         // Update is called once per frame
@@ -31,21 +29,21 @@ namespace Assets.Scripts
             {
                 nextFire = Time.time + fireRate;
 
-                //StartCoroutine(ShotEffect());
+                StartCoroutine(ShotEffect());
 
                 Vector3 rayOrigin = gunTip.position;
 
                 RaycastHit hit;
+                //laserLine.SetPosition(0, gunTip.position);
 
 
                 if (Physics.Raycast(rayOrigin, -gunTip.forward, out hit, weaponRange))
                 {
-                    
-                    if (hit.collider.gameObject.tag == "Enemy")
+                    //laserLine.SetPosition(1, hit.point);
+
+                    if (hit.collider.gameObject.name == "Cube")
                     {
-                        ShootEnemy(hit.collider);
-                        Debug.Log("Enemy Shot");
-                        Debug.Log("Enemy Health: " + hit.transform.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
+                        Debug.Log("cube");
                     }
                     else
                     {
@@ -60,11 +58,6 @@ namespace Assets.Scripts
             laserLine.enabled = true;
             yield return shotDuration;
             laserLine.enabled = false;
-        }
-
-        public void ShootEnemy(Collider other)
-        {
-            other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
         }
     }
 }

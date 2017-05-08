@@ -20,7 +20,7 @@ namespace Assets.Scripts
 
         // Use this for initialization
         void Start () {
-            laserLine = GetComponent<LineRenderer>();           
+            laserLine = GetComponent<LineRenderer>();
         }
 	
         // Update is called once per frame
@@ -43,9 +43,9 @@ namespace Assets.Scripts
                     
                     if (hit.collider.gameObject.tag == "Enemy")
                     {
-                        ShootEnemy(hit.collider);
+                        HurtEnemy(hit.collider);
                         Debug.Log("Enemy Shot");
-                        Debug.Log("Enemy Health: " + hit.transform.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
+                        Debug.Log("Enemy Health: " + hit.collider.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
                     }
                     else
                     {
@@ -62,7 +62,7 @@ namespace Assets.Scripts
             laserLine.enabled = false;
         }
 
-        public void ShootEnemy(Collider other)
+        public void HurtEnemy(Collider other)
         {
             other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
         }

@@ -20,7 +20,7 @@ namespace Assets.Scripts
 
         // Use this for initialization
         void Start () {
-            laserLine = GetComponent<LineRenderer>();           
+            laserLine = GetComponent<LineRenderer>();
         }
 	
         // Update is called once per frame
@@ -40,17 +40,21 @@ namespace Assets.Scripts
 
                 if (Physics.Raycast(rayOrigin, -gunTip.forward, out hit, weaponRange))
                 {
-                    
-                    if (hit.collider.gameObject.tag == "Enemy")
+                    EnemyHealthManager EnemyHealth = hit.collider.gameObject.GetComponent<EnemyHealthManager>();
+                    if (EnemyHealth != null)
                     {
-                        ShootEnemy(hit.collider);
-                        Debug.Log("Enemy Shot");
-                        Debug.Log("Enemy Health: " + hit.transform.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
+                        EnemyHealth.HurtEnemy(damageToGive);
                     }
-                    else
-                    {
-                        laserLine.SetPosition(1, rayOrigin + -gunTip.forward * weaponRange);
-                    }
+                    //if (hit.collider.gameObject.tag == "Enemy")
+                    //{
+                    //    hit.transform.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
+                    //    Debug.Log("Enemy Shot");
+                    //    Debug.Log("Enemy Health: " + hit.transform.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
+                    //}
+                    //else
+                    //{
+                    //    laserLine.SetPosition(1, rayOrigin + -gunTip.forward * weaponRange);
+                    //}
                 }
             }
         }

@@ -20,7 +20,7 @@ namespace Assets.Scripts
 
         // Use this for initialization
         void Start () {
-            laserLine = GetComponent<LineRenderer>();           
+            laserLine = GetComponent<LineRenderer>();
         }
 	
         // Update is called once per frame
@@ -43,9 +43,9 @@ namespace Assets.Scripts
                     
                     if (hit.collider.gameObject.tag == "Enemy")
                     {
-                        ShootEnemy(hit.collider);
+                        hit.collider.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
                         Debug.Log("Enemy Shot");
-                        Debug.Log("Enemy Health: " + hit.transform.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
+                        Debug.Log("Enemy Health: " + hit.collider.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
                     }
                     else
                     {
