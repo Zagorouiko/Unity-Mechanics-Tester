@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     public Transform target;
     private float distance;
 
-    public float attackRate = .10f;
+    public float attackRate = 1f;
     private float nextAttack;
 
     private PlayerHealthManager _playerHealthManager;
@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
         {
             agent.SetDestination(target.position);
         }
-        //delay not working?
+
         else if (distance <= 1.5 && Time.time > nextAttack)
         {
             nextAttack = Time.time + attackRate;
