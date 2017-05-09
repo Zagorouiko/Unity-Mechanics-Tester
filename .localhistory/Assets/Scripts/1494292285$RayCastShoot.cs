@@ -14,7 +14,7 @@ namespace Assets.Scripts
 
         private WaitForSeconds shotDuration = new WaitForSeconds(0.7f);
         private LineRenderer laserLine;
-        private ParticleSystem particleSystem;
+        public ParticleSystem particleSystem;
         private float nextFire;
 
         public int damageToGive;
@@ -59,10 +59,14 @@ namespace Assets.Scripts
 
         private IEnumerator ShotEffect()
         {
-            var particleSystemEmission = particleSystem.emission;
-            particleSystemEmission.enabled = true;
+            particleSystem.emission.enabled = true;
             yield return shotDuration;
-            particleSystemEmission.enabled = false;
+            laserLine.enabled = false;
+        }
+
+        private void ShootEffect()
+        {
+            particleSystem.emission.enabled = true;
         }
 
         public void ShootEnemy(Collider other)

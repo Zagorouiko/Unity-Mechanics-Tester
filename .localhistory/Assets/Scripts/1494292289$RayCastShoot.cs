@@ -65,6 +65,11 @@ namespace Assets.Scripts
             particleSystemEmission.enabled = false;
         }
 
+        private void ShootEffect()
+        {
+            particleSystem.emission.enabled = true;
+        }
+
         public void ShootEnemy(Collider other)
         {
             other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);

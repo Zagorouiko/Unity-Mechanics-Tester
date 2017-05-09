@@ -14,17 +14,15 @@ namespace Assets.Scripts
 
         private WaitForSeconds shotDuration = new WaitForSeconds(0.7f);
         private LineRenderer laserLine;
-        private ParticleSystem particleSystem;
         private float nextFire;
 
         public int damageToGive;
 
         // Use this for initialization
         void Start () {
-            laserLine = GetComponent<LineRenderer>();
-            particleSystem = GetComponent<ParticleSystem>();
+            laserLine = GetComponent<LineRenderer>();           
         }
-
+	
         // Update is called once per frame
         void Update ()
         {
@@ -33,7 +31,7 @@ namespace Assets.Scripts
             {
                 nextFire = Time.time + fireRate;
 
-                StartCoroutine(ShotEffect());
+                //StartCoroutine(ShotEffect());
 
                 Vector3 rayOrigin = gunTip.position;
 
@@ -46,8 +44,8 @@ namespace Assets.Scripts
                     if (hit.collider.gameObject.tag == "Enemy")
                     {
                         ShootEnemy(hit.collider);
-                        //Debug.Log("Enemy Shot");
-                        //Debug.Log("Enemy Health: " + hit.transform.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
+                        Debug.Log("Enemy Shot");
+                        Debug.Log("Enemy Health: " + hit.transform.gameObject.GetComponent<EnemyHealthManager>().enemyCurrentHealth);
                     }
                     else
                     {
@@ -59,10 +57,9 @@ namespace Assets.Scripts
 
         private IEnumerator ShotEffect()
         {
-            var particleSystemEmission = particleSystem.emission;
-            particleSystemEmission.enabled = true;
+            laserLine.enabled = true;
             yield return shotDuration;
-            particleSystemEmission.enabled = false;
+            laserLine.enabled = false;
         }
 
         public void ShootEnemy(Collider other)

@@ -59,10 +59,9 @@ namespace Assets.Scripts
 
         private IEnumerator ShotEffect()
         {
-            var particleSystemEmission = particleSystem.emission;
-            particleSystemEmission.enabled = true;
+            laserLine.enabled = true;
             yield return shotDuration;
-            particleSystemEmission.enabled = false;
+            laserLine.enabled = false;
         }
 
         public void ShootEnemy(Collider other)
